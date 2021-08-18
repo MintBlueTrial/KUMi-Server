@@ -9,4 +9,8 @@ export class AppService {
       return 'Hello TypeScript! Hello Nest.js!';
     }
   }
+
+  getTypeScript(createUser: object): object {
+    return createUser
+  }
 }
