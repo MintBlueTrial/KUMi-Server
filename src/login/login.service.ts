@@ -1,12 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class LoginService {
-    login(userInfo: object): object {
-        if (userInfo['name'] == 'admin' && userInfo['password'] == '123') {
-            return {...userInfo}
-        } else {
-            return {'msg': '登录失败'}
+    constructor(
+        @InjectModel('userInfo') private readonly userInfoModel
+    ) {}
+
+    async login(userInfo: object) {
+        const users: any[] = await this.userInfoModel.find({'userName': userInfo['name']}).exec()
+        if (users) {
+            for (let i = 0; i < users.length; i++) {
+                if (users[i].password == userInfo['password']) {
+                    Logger.log(`用户${users[i].userName}登录成功`)
+                    return {...userInfo, 'msg': '登录成功'}
+                }
+            }
         }
+        return {'msg': '登录失败, 用户名或密码错误'}
     }
 }

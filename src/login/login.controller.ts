@@ -1,13 +1,13 @@
 import { Body, Controller, Post } from '@nestjs/common';
+import { UserDto } from './dto/login.dto';
 import { LoginService } from './login.service';
-import { userInfo } from './login.dto'
 
 @Controller('login')
 export class LoginController {
     constructor(private readonly loginService: LoginService) {}
 
     @Post()
-    login(@Body() userInfo: userInfo): object{
+    login(@Body() userInfo: UserDto): object{
         return this.loginService.login(userInfo)
     } 
 }
