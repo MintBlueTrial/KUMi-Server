@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { User } from './login.schema';
 
 @Injectable()
 export class LoginService {
@@ -7,11 +8,11 @@ export class LoginService {
         @InjectModel('userInfo') private readonly userInfoModel
     ) {}
 
-    async login(userInfo: object) {
-        const users: any[] = await this.userInfoModel.find({'userName': userInfo['name']}).exec()
+    async login(userInfo: User) {
+        const users: any[] = await this.userInfoModel.find({'userName': userInfo.userName})
         if (users) {
             for (let i = 0; i < users.length; i++) {
-                if (users[i].password == userInfo['password']) {
+                if (users[i].password == userInfo.password) {
                     Logger.log(`用户${users[i].userName}登录成功`)
                     return {...userInfo, 'msg': '登录成功'}
                 }
