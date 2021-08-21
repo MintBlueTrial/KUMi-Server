@@ -7,7 +7,7 @@ interface Response<T> {
 // 统一请求返回成功的数据
 @Injectable()
 export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> {
-  intercept(context: ExecutionContext,next: CallHandler<T>,): Observable<Response<T>> {
+  intercept(context: ExecutionContext, next: CallHandler<T>,): Observable<Response<T>> {
     return next.handle().pipe(map(data => {
         return {
           data,
