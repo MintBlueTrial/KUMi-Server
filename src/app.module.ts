@@ -4,6 +4,7 @@ import { LoginModule } from './login/login.module';
 
 @Module({
   imports: [
+    // MongoDB数据库连接
     MongooseModule.forRoot('mongodb://127.0.0.1:27017/KUMi'),
     LoginModule
   ],
