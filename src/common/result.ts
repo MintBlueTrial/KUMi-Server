@@ -7,7 +7,6 @@
 
 const { CODE_ERROR, CODE_SUCCESS, CODE_TOKEN_EXP } = require('../utils/constant');
 
-
 export class Result {
 
     data: any
