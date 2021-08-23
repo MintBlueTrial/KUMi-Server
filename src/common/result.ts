@@ -5,7 +5,7 @@
 * @Description: 响应结果
 */
 
-const { CODE_ERROR, CODE_SUCCESS, CODE_TOKEN_EXP } = require('../utils/constant');
+const { CODE_ERROR, CODE_SUCCESS, CODE_TOKEN_EXP } = require('../Utils/constant');
 
 export class Result {
 

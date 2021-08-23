@@ -7,8 +7,8 @@
 
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Result } from 'src/common/result';
-import { User } from './login.schema';
+import { Result } from 'src/Common/result';
+import { User } from '../Schema/user.schema';
 
 @Injectable()
 export class LoginService {

@@ -7,8 +7,8 @@
 
 import { Body, Controller, Post } from '@nestjs/common';
 import { LoginService } from './login.service';
-import { User } from './login.schema';
-import { Response } from 'src/common/result.interface';
+import { User } from '../Schema/user.schema';
+import { Response } from 'src/Common/result.interface';
 
 @Controller('login')
 export class LoginController {

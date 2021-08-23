@@ -1,8 +1,8 @@
 /*
-* @Time    : 2021/08/23 15:29:32
+* @Time    : 2021/08/23 16:00:29
 * @Author  : DannyDong
-* @File    : login.schema.ts
-* @Description: 登录数据ORM
+* @File    : user.schema.ts
+* @Description: 用户相关数据ORM
 */
 
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';

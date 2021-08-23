@@ -7,8 +7,8 @@
 
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { LoginModule } from './login/login.module';
-import { UserModule } from './user/user.module';
+import { LoginModule } from './Login/login.module';
+import { UserModule } from './User/user.module';
 
 @Module({
   imports: [
