@@ -1,3 +1,10 @@
+/*
+* @Time    : 2021/08/23 15:28:53
+* @Author  : DannyDong
+* @File    : login.module.ts
+* @Description: 登录 Module
+*/
+
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from 'src/login/login.schema';

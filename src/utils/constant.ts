@@ -1,7 +1,7 @@
 /*
-* @Time    : 2021/08/23 11:36
+* @Time    : 2021/08/23 15:30:18
 * @Author  : DannyDong
-* @File    : constant.js
+* @File    : constant.ts
 * @Description: 常量
 */
 

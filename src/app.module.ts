@@ -1,3 +1,10 @@
+/*
+* @Time    : 2021/08/23 15:31:07
+* @Author  : DannyDong
+* @File    : app.module.ts
+* @Description: 应用程序的根模块
+*/
+
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { LoginModule } from './login/login.module';

@@ -1,3 +1,10 @@
+/*
+* @Time    : 2021/08/23 15:27:37
+* @Author  : DannyDong
+* @File    : login.service.ts
+* @Description: 用户登录Service
+*/
+
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Result } from 'src/common/result';

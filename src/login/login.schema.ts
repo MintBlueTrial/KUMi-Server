@@ -1,3 +1,10 @@
+/*
+* @Time    : 2021/08/23 15:29:32
+* @Author  : DannyDong
+* @File    : login.schema.ts
+* @Description: 登录数据ORM
+*/
+
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
