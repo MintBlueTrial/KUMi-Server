@@ -5,7 +5,18 @@
 * @Description: 用户相关控制器
 */
 
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { Response } from 'src/Common/result.interface';
+import { UserService } from './user.service';
 
 @Controller('user')
-export class UserController {}
+export class UserController {
+    // 构造函数
+    constructor(private readonly userService: UserService) {}
+
+    // 获取所有用户
+    @Get('/get/all')
+    async getUsers(): Promise<Response> {
+        return await this.userService.getUsers()
+    }
+}
