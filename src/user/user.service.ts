@@ -5,6 +5,7 @@
 * @Description: 用户相关逻辑实现
 */
 
+import { ObjectId } from 'mongodb'
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Result } from 'src/Common/result';
@@ -19,7 +20,7 @@ export class UserService {
     async getUsers() {
         try {
             // 过滤返回字段
-            const field = '_id userName is_del create_time'
+            const field = 'userId userName is_del create_time'
             let users = await this.userInfoModel.find({}, field).exec()
             return new Result(users, '获取数据成功').success()
         } catch(error) {
@@ -30,8 +31,8 @@ export class UserService {
     // 通过ID获取用户信息
     async getUserById(Params: User) {
         // 过滤返回字段
-        const field = '_id userName create_time'
-        const user = await this.userInfoModel.findOne({'_id': Params.id}, field).exec()
+        const field = 'userId userName create_time'
+        const user = await this.userInfoModel.findOne({'userId': Params.userId}, field).exec()
         if (user) {
             return new Result(user, '获取数据成功').success()
         }
@@ -42,12 +43,13 @@ export class UserService {
     async createUser(Params: User) {
         try {
             // 用户唯一性校验
-            const temp: any[] = await this.userInfoModel.find({'userName': Params.userName})
+            const temp: any[] = await this.userInfoModel.find({'userName': Params.userName}).exec()
             if (temp.length != 0) {
                 return new Result('新增失败！用户名重复！').fail()
             }
             // 组装数据
             const data = {
+                'userId': new ObjectId(),
                 'userName': Params.userName,
                 'password': Params.password,
                 'is_del': 0,

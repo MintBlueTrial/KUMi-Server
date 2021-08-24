@@ -17,6 +17,9 @@ export type UserDocument = User & Document;
 @Schema({ versionKey:false })
 export class User extends Document {
 
+    @Prop({ required: true, unique: true })
+    userId: string;
+
     @Prop({ required: true })
     userName: string;
 
