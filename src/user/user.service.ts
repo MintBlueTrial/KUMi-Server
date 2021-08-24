@@ -37,4 +37,26 @@ export class UserService {
         }
         return new Result('没有此用户，获取数据失败').fail()
     }
+
+    // 新增用户信息
+    async createUser(Params: User) {
+        try {
+            // 用户唯一性校验
+            const temp: any[] = await this.userInfoModel.find({'userName': Params.userName})
+            if (temp.length != 0) {
+                return new Result('新增失败！用户名重复！').fail()
+            }
+            // 组装数据
+            const data = {
+                'userName': Params.userName,
+                'password': Params.password,
+                'is_del': 0,
+                'create_time': new Date().valueOf()
+            }
+            await this.userInfoModel.create(data)
+            return new Result('新增成功!').success()
+        } catch(error) {
+            return new Result(`新增失败！失败原因：${error}`).fail()
+        }
+    }
 }

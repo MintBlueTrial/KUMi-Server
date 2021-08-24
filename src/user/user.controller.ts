@@ -26,4 +26,10 @@ export class UserController {
     async getUser(@Body() Parmas: User): Promise<Response> {
         return await this.userService.getUserById(Parmas)
     } 
+
+    // 新增用户信息
+    @Post('/create')
+    async createUser(@Body() Parmas: User): Promise<Response> {
+        return await this.userService.createUser(Parmas)
+    }
 }
