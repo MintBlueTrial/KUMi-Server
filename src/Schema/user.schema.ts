@@ -10,11 +10,12 @@ import { Document } from 'mongoose';
 
 export type UserDocument = User & Document;
 
-@Schema()
+/* 
+* versionkey:false
+* 为了在新增数据中，去掉__v字段
+*/
+@Schema({ versionKey:false })
 export class User extends Document {
-
-    @Prop({ required: true })
-    id: string;
 
     @Prop({ required: true })
     userName: string;
