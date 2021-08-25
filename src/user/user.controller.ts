@@ -38,4 +38,10 @@ export class UserController {
     editUser(@Body() Params: User): Promise<Response> {
         return this.userService.editUser(Params)
     }
+
+    // 删除用户信息
+    @Post('/del')
+    deleteUser(@Body() Params: User): Promise<Response> {
+        return this.userService.deleteUser(Params)
+    }
 }

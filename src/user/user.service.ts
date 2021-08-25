@@ -78,4 +78,21 @@ export class UserService {
             return new Result(`更新失败！失败原因：${error}`).fail()
         }
     }
+
+    // 编辑用户信息
+    async deleteUser(Params: User) {
+        try {
+            const user = await this.userInfoModel.findOne({'userId': Params.userId})
+            if (!user) {
+                return new Result('没有该用户，删除用户信息失败！').fail()
+            }
+            const res = await this.userInfoModel.updateOne(
+                {'userId': Params.userId}, 
+                {'is_del': 1}
+            )
+            return new Result('删除用户成功!').success()
+        } catch (error) {
+            return new Result(`删除失败！失败原因：${error}`).fail()
+        }
+    }
 }
