@@ -61,4 +61,21 @@ export class UserService {
             return new Result(`新增失败！失败原因：${error}`).fail()
         }
     }
+
+    // 编辑用户信息
+    async editUser(Params: User) {
+        try {
+            const user = await this.userInfoModel.findOne({'userId': Params.userId})
+            if (!user) {
+                return new Result('没有该用户，更新用户信息失败！').fail()
+            }
+            const res = await this.userInfoModel.updateOne(
+                {'userId': Params.userId}, 
+                {'userName': Params.userName, 'password': Params.password}
+            )
+            return new Result('更新用户信息成功!').success()
+        } catch (error) {
+            return new Result(`更新失败！失败原因：${error}`).fail()
+        }
+    }
 }

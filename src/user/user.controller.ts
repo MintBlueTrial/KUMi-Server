@@ -17,19 +17,25 @@ export class UserController {
 
     // 获取所有用户
     @Get('/get/all')
-    async getUsers(): Promise<Response> {
-        return await this.userService.getUsers()
+    getUsers(): Promise<Response> {
+        return this.userService.getUsers()
     }
 
     // 通过ID获取用户信息
     @Post('/get/one')
-    async getUser(@Body() Parmas: User): Promise<Response> {
-        return await this.userService.getUserById(Parmas)
+    getUser(@Body() Parmas: User): Promise<Response> {
+        return this.userService.getUserById(Parmas)
     } 
 
     // 新增用户信息
     @Post('/create')
-    async createUser(@Body() Parmas: User): Promise<Response> {
-        return await this.userService.createUser(Parmas)
+    createUser(@Body() Parmas: User): Promise<Response> {
+        return this.userService.createUser(Parmas)
+    }
+
+    // 更新用户信息
+    @Post('/edit')
+    editUser(@Body() Params: User): Promise<Response> {
+        return this.userService.editUser(Params)
     }
 }
