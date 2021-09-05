@@ -20,18 +20,20 @@ export class Task extends Document {
     @Prop({ required: true })
     taskName: string;
     
+    @Prop({ required: true })
     taskContent: string;
     
     // Status: ready、going、finish
-    @Prop({ required: true, default: 'ready' })
+    @Prop({})
     taskStatus: string;
     
-    @Prop({ required: true, default: 0 })
+    @Prop({})
     taskPrograss: number;
     
     @Prop({ required: true })
     beginDate: string;
-
+    
+    @Prop({ required: true })
     finishDate: string;
 
     @Prop({ required: true })
