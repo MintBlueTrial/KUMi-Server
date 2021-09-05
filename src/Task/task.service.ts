@@ -9,6 +9,7 @@ import { ObjectId } from 'mongodb'
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Result } from 'src/Common/result';
+import { Task } from 'src/Schema/task.schema';
 
 
 @Injectable()
@@ -20,5 +21,23 @@ export class TaskService {
     async getAllTasks() {
         const tasks = await this.taskInfoModel.find().exec()
         return new Result(tasks, '获取数据成功').success()
+    }
+
+    // 新增任务
+    async createTask(Params: Task) {
+        const data = {
+            taskId:         new ObjectId(),
+            taskName:       Params.taskName,
+            taskContent:    Params.taskContent,
+            taskStatus:     (Params.taskStatus == '' || Params.taskStatus == undefined) ? 'ready' : Params.taskStatus,
+            taskPrograss:   (Params.taskPrograss.toString() == '' || Params.taskPrograss == undefined) ? 0 : Params.taskPrograss,
+            beginDate:      Params.beginDate,
+            finishDate:     Params.finishDate,
+            // 创建人从cookie里取，暂时先传入
+            creator:        Params.creator,
+            createTime:     new Date().valueOf(),
+        }
+        await this.taskInfoModel.create(data)
+        return new Result('新增成功').success()
     }
 }
