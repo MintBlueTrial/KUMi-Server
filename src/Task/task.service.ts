@@ -40,4 +40,28 @@ export class TaskService {
         await this.taskInfoModel.create(data)
         return new Result('新增成功').success()
     }
+
+    // 编辑任务
+    async editTask(Params: Task) {
+        try {
+            const task = await this.taskInfoModel.findOne({'taskId': Params.taskId})
+            if (!task) {
+                return new Result('没有该任务，编辑任务失败！').fail()
+            }
+            const res = await this.taskInfoModel.updateOne(
+                { taskId: Params.taskId },
+                {
+                    taskName:       Params.taskName,
+                    taskContent:    Params.taskContent,
+                    taskStatus:     (Params.taskStatus == '' || Params.taskStatus == undefined) ? 'ready' : Params.taskStatus,
+                    taskPrograss:   (Params.taskPrograss.toString() == '' || Params.taskPrograss == undefined) ? 0 : Params.taskPrograss,
+                    beginDate:      Params.beginDate,
+                    finishDate:     Params.finishDate,
+                }
+            )
+            return new Result('更新任务信息成功!').success()
+        } catch (error) {
+            return new Result(`更新任务信息失败，失败原因：${error}`).fail()
+        }
+    }
 }
