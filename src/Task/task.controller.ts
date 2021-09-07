@@ -26,4 +26,10 @@ export class TaskController {
     createTask(@Body() Params: Task) {
         return this.taskService.createTask(Params)
     }
+
+    // 编辑任务
+    @Post('/edit')
+    editTask(@Body() Params: Task) {
+        return this.taskService.editTask(Params)
+    }
 }
