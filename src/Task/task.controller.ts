@@ -32,4 +32,10 @@ export class TaskController {
     editTask(@Body() Params: Task) {
         return this.taskService.editTask(Params)
     }
+
+    // 删除任务
+    @Post('/delete')
+    deleteTask(@Body() Params: Task) {
+        return this.taskService.deleteTask(Params)
+    }
 }
