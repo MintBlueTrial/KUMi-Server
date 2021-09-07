@@ -25,20 +25,24 @@ export class TaskService {
 
     // 新增任务
     async createTask(Params: Task) {
-        const data = {
-            taskId:         new ObjectId(),
-            taskName:       Params.taskName,
-            taskContent:    Params.taskContent,
-            taskStatus:     (Params.taskStatus == '' || Params.taskStatus == undefined) ? 'ready' : Params.taskStatus,
-            taskPrograss:   (Params.taskPrograss.toString() == '' || Params.taskPrograss == undefined) ? 0 : Params.taskPrograss,
-            beginDate:      Params.beginDate,
-            finishDate:     Params.finishDate,
-            // 创建人从cookie里取，暂时先传入
-            creator:        Params.creator,
-            createTime:     new Date().valueOf(),
+        try {
+            const data = {
+                taskId:         new ObjectId(),
+                taskName:       Params.taskName,
+                taskContent:    Params.taskContent,
+                taskStatus:     (Params.taskStatus == '' || Params.taskStatus == undefined) ? 'ready' : Params.taskStatus,
+                taskPrograss:   (Params.taskPrograss.toString() == '' || Params.taskPrograss == undefined) ? 0 : Params.taskPrograss,
+                beginDate:      Params.beginDate,
+                finishDate:     Params.finishDate,
+                // 创建人从cookie里取，暂时先传入
+                creator:        Params.creator,
+                createTime:     new Date().valueOf(),
+            }
+            await this.taskInfoModel.create(data)
+            return new Result('新增成功').success()
+        } catch (error) {
+            return new Result(`新增任务失败！失败原因：${error}`).fail()
         }
-        await this.taskInfoModel.create(data)
-        return new Result('新增成功').success()
     }
 
     // 编辑任务
