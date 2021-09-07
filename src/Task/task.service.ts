@@ -68,4 +68,18 @@ export class TaskService {
             return new Result(`更新任务信息失败，失败原因：${error}`).fail()
         }
     }
+
+    // 删除任务
+    async deleteTask(Params: Task) {
+        try {
+            const task = await this.taskInfoModel.findOne({'taskId': Params.taskId})
+            if (!task) {
+                return new Result('没有该任务，删除任务失败!').fail()
+            }
+            const res = await this.taskInfoModel.deleteOne({ taskId: Params.taskId })
+            return new Result('删除任务成功!').success()
+        } catch (error) {
+            return new Result(`删除任务失败！失败原因：${error}`).fail()
+        }
+    }
 }
