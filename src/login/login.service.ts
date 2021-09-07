@@ -22,7 +22,7 @@ export class LoginService {
             for (let i = 0; i < users.length; i++) {
                 if (users[i].password == userInfo.password) {
                     Logger.debug(`KUMi用户「${users[i].userName}」登录成功`)
-                    return new Result({...userInfo}, '登录成功').success()
+                    return new Result({userId: users[i].userId}, '登录成功').success()
                 }
             }
         }
