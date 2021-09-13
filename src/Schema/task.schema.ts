@@ -31,10 +31,10 @@ export class Task extends Document {
     taskPrograss: number;
     
     @Prop({ required: true })
-    beginDate: string;
+    beginTime: string;
     
     @Prop({ required: true })
-    finishDate: string;
+    finishTime: string;
 
     @Prop({ required: true })
     creator: string

@@ -32,8 +32,8 @@ export class TaskService {
                 taskContent:    Params.taskContent,
                 taskStatus:     (Params.taskStatus == '' || Params.taskStatus == undefined) ? 'ready' : Params.taskStatus,
                 taskPrograss:   (Params.taskPrograss.toString() == '' || Params.taskPrograss == undefined) ? 0 : Params.taskPrograss,
-                beginDate:      Params.beginDate,
-                finishDate:     Params.finishDate,
+                beginTime:      Params.beginTime,
+                finishTime:     Params.finishTime,
                 // 创建人从cookie里取，暂时先传入
                 creator:        Params.creator,
                 createTime:     new Date().valueOf(),
@@ -59,8 +59,8 @@ export class TaskService {
                     taskContent:    Params.taskContent,
                     taskStatus:     (Params.taskStatus == '' || Params.taskStatus == undefined) ? 'ready' : Params.taskStatus,
                     taskPrograss:   (Params.taskPrograss.toString() == '' || Params.taskPrograss == undefined) ? 0 : Params.taskPrograss,
-                    beginDate:      Params.beginDate,
-                    finishDate:     Params.finishDate,
+                    beginTime:      Params.beginTime,
+                    finishTime:     Params.finishTime,
                 }
             )
             return new Result('更新任务信息成功!').success()
