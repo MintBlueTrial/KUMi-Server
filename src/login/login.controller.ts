@@ -20,7 +20,8 @@ export class LoginController {
         const result: Response = await this.loginService.login(userInfo)
         if (result.code == 0) {
             // 登录成功后，设置cookie
-            response.cookie('userId', result.data.userId, { httpOnly: true })
+            response.cookie('userId', String(result.data._id), { httpOnly: true })
+            Logger.debug(result)
             Logger.debug('Cookie设置成功')
         }
         return result
