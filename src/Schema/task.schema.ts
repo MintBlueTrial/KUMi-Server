@@ -36,7 +36,7 @@ export class Task extends Document {
     @Prop({ required: true })
     finishTime: string;
 
-    @Prop({ required: true })
+    @Prop({ required: true, ref: 'userInfo' })
     creator: string
     
     @Prop({ required: true })

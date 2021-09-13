@@ -19,7 +19,11 @@ export class TaskService {
 
     // 获取所有任务
     async getAllTasks() {
-        const tasks = await this.taskInfoModel.find().exec()
+        const tasks = await this.taskInfoModel.find().populate({path: 'creator', select: 'userName'})
+        // 处理获取到的创建人信息
+        tasks.map((item: any) => {
+            item.creator = item.creator.userName
+        })
         return new Result(tasks, '获取数据成功').success()
     }
 
