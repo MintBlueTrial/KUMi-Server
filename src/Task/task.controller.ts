@@ -5,7 +5,7 @@
 * @Description: 任务相关控制器
 */
 
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { Response } from 'src/Common/result.interface';
 import { Task } from 'src/Schema/task.schema';
 import { TaskService } from './task.service';
@@ -15,10 +15,10 @@ export class TaskController {
     // 构造函数
     constructor(private readonly taskService: TaskService) {}
 
-    // 获取所有用户
+    // 获取任务信息
     @Get('/get/all')
-    getAllTasks(): Promise<Response> {
-        return this.taskService.getAllTasks()
+    getAllTasks(@Query() Params: Task): Promise<Response> {
+        return this.taskService.getTasks(Params)
     }
 
     // 新增任务

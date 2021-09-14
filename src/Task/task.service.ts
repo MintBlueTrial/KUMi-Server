@@ -18,10 +18,23 @@ export class TaskService {
     // 构造函数
     constructor(@InjectModel('taskInfo') private readonly taskInfoModel) {}
 
-    // 获取所有任务
-    async getAllTasks() {
-        const tasks = await this.taskInfoModel.find().populate({path: 'creator', select: 'userName'})
-        // 处理获取到的创建人信息
+    // 获取任务信息
+    async getTasks(Params: Task) {
+        var tasks = []
+        // 判断查询参数是否为空
+        if (Object.keys(Params).length == 0) {
+            tasks = await this.taskInfoModel.find().populate({path: 'creator', select: 'userName'})
+        } else {
+            // 构造查询参数 ($regex 代表模糊查询)
+            const queryTaskName = (Params.taskName == null || Params.taskName == 'undefined') ? {} : {'taskName': { $regex: Params.taskName }} 
+            const queryTaskStatus = (Params.taskStatus == null || Params.taskStatus == 'undefined') ? {} : {'taskStatus': { $regex: Params.taskStatus }} 
+            const queryBeginTime = (Params.beginTime == null || Params.beginTime == 'undefined') ? {} : {'beginTime': { '$gte': Params.beginTime }} 
+            const queryFinishTime = (Params.finishTime == null || Params.finishTime == 'undefined') ? {} : {'finishTime': { '$lte': Params.finishTime }}
+            tasks = await this.taskInfoModel.find(
+                Object.assign(queryTaskName, queryTaskStatus, queryBeginTime, queryFinishTime)
+            ).populate({path: 'creator', select: 'userName'})
+        }
+        // 处理获取到的创建人信息和时间
         tasks.map((item: any) => {
             item.creator = item.creator.userName
             item.beginTime = set_time(item.beginTime)
