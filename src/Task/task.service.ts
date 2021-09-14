@@ -10,6 +10,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Result } from 'src/Common/result';
 import { Task } from 'src/Schema/task.schema';
+import { set_time } from 'src/Utils/formatTime';
 
 
 @Injectable()
@@ -23,6 +24,8 @@ export class TaskService {
         // 处理获取到的创建人信息
         tasks.map((item: any) => {
             item.creator = item.creator.userName
+            item.beginTime = set_time(item.beginTime)
+            item.finishTime = set_time(item.finishTime)
         })
         return new Result(tasks, '获取数据成功').success()
     }
