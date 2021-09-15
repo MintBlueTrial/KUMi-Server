@@ -55,7 +55,9 @@ export class TaskService {
                 beginTime:      Params.beginTime,
                 finishTime:     Params.finishTime,
                 // 创建人从cookie里取，暂时先传入
-                creator:        Params.creator,
+                // creator:        Params.creator,
+                // 暂时写固定的user._id
+                creator:        '6124a0afc3914766f15d3877',
                 createTime:     new Date().valueOf(),
             }
             await this.taskInfoModel.create(data)
