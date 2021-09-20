@@ -24,7 +24,8 @@ export function set_time(timeStr: string) {
     // 秒(0-59)
     const seconds = tempTime.getSeconds()
     const newSeconds = seconds < 10 ? ('0' + seconds) : seconds
-    // 格式化时间
-    const newTime = year + '-' + newMonth + '-' + newDay + ' ' + newHours + ':' + newMinutes + ':' + newSeconds
+    // 格式化时间（暂时只取年月日）
+    // const newTime = year + '-' + newMonth + '-' + newDay + ' ' + newHours + ':' + newMinutes + ':' + newSeconds
+    const newTime = year + '-' + newMonth + '-' + newDay
     return newTime
 }
